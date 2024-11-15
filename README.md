@@ -10,14 +10,4 @@ this project is for a user to register contacts
 npm run dev
 ```
 
-## How to test
-### Tools
-#### Install httpie
-[httppie](https://httpie.io/cli)
-#### Commands
-```shell
-http POST localhost:3333/contact
-```
-```shell
-http GET localhost:3333/contact
-```
+## Routes
