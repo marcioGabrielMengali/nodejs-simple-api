@@ -26,6 +26,13 @@ export const createContat = (req, res) => {
 
 export const deleteContact = (req, res) => {
   const { id } = req.params;
-  repository.delete(TABLE_NAME, id)
+  repository.delete(TABLE_NAME, id);
+  return res.writeHead(204).end();
+};
+
+export const updateContact = (req, res) => {
+  const data = req.body;
+  const { id } = req.params;
+  repository.update(TABLE_NAME, id, data)
   return res.writeHead(204).end()
 };

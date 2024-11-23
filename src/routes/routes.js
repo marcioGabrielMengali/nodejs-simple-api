@@ -1,6 +1,6 @@
 import { CONTANCT_URL } from "../utils/consts.js";
 import { buildPathParameters } from "../utils/route-path-parameters.js";
-import { createContat, deleteContact, getContacts } from "./handlres.js";
+import { createContat, deleteContact, getContacts, updateContact } from "./handlres.js";
 
 export const routes = [
   {
@@ -17,5 +17,10 @@ export const routes = [
     method: "DELETE",
     url: buildPathParameters(`${CONTANCT_URL}/:id`),
     handler: deleteContact,
+  },
+  {
+    method: 'PUT',
+    url: buildPathParameters(`${CONTANCT_URL}/:id`),
+    handler: updateContact
   }
 ];
