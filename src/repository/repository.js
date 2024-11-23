@@ -14,8 +14,13 @@ export class Repository {
     fs.writeFile(this.#filePath, JSON.stringify(this.#database));
   }
 
-  select(table) {
+  select(table, sort) {
     const data = this.#database[table] ?? [];
+    if(sort && data.length > 0){
+      data.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+      return data
+    }
+    
     return data;
   }
 

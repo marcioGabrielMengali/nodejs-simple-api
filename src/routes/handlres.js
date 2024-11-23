@@ -5,7 +5,8 @@ import { Repository } from "./../repository/repository.js";
 const repository = new Repository();
 
 export const getContacts = (req, res) => {
-  const response = repository.select(TABLE_NAME);
+  const { sort } = req.query;
+  const response = repository.select(TABLE_NAME, sort);
   return res.end(JSON.stringify(response));
 };
 
@@ -33,6 +34,6 @@ export const deleteContact = (req, res) => {
 export const updateContact = (req, res) => {
   const data = req.body;
   const { id } = req.params;
-  repository.update(TABLE_NAME, id, data)
-  return res.writeHead(204).end()
+  repository.update(TABLE_NAME, id, data);
+  return res.writeHead(204).end();
 };
