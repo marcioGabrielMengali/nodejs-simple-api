@@ -13,9 +13,15 @@ const server = http.createServer(async (req, res) => {
   await getRequestBody(req, res);
   setResponseHeaders(req, res);
   const route = routes.find(
-    (route) => route.method === method && route.url === url
+    (route) => route.method === method && route.url.test(url)
   );
-  if (route) return route.handler(req, res);
+  if (route){
+    const routeParams = req.url.match(route.url)
+    const {query, ...params} = routeParams.groups
+    req.params = params;
+    req.query = query ? getQueryParameters(query) : {}
+    return route.handler(req, res)
+  };
   return res.writeHead(404).end("Not Found");
 });
 

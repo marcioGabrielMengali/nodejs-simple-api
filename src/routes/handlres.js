@@ -23,3 +23,9 @@ export const createContat = (req, res) => {
   repository.insert(TABLE_NAME, data);
   return res.writeHead(201).end();
 };
+
+export const deleteContact = (req, res) => {
+  const { id } = req.params;
+  repository.delete(TABLE_NAME, id)
+  return res.writeHead(204).end()
+};
